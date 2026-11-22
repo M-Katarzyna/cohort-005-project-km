@@ -18,6 +18,7 @@ import {
   Sun,
   LogOut,
   Settings,
+  Bell,
 } from "lucide-react";
 
 interface CurrentUser {
@@ -162,6 +163,26 @@ export function Sidebar({
               {item.label}
             </NavLink>
           ))}
+        {import.meta.env.DEV && (
+          <NavLink
+            to="/prototype/notifications?variant=B"
+            aria-label="Notifications, 2 unread"
+            className={({ isActive }) =>
+              cn(
+                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                isActive
+                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                  : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              )
+            }
+          >
+            <Bell className="size-4" />
+            <span className="flex-1">Notifications</span>
+            <span className="rounded-full bg-blue-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+              2
+            </span>
+          </NavLink>
+        )}
         {isTeamAdmin && (
           <NavLink
             to="/team"
